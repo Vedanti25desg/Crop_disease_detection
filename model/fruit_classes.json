@@ -1,0 +1,15 @@
+{
+  "img_size": 224,
+  "class_names": [
+    "abiotic-disease-d",
+    "blossom-end-rot-d",
+    "healthy-fruit",
+    "tomato-late-blight-d"
+  ],
+  "keys_by_index": [
+    "fruit_abiotic",
+    "fruit_blossom_end_rot",
+    "fruit_healthy",
+    "fruit_late_blight"
+  ]
+}
