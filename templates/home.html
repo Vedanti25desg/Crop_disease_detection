@@ -149,7 +149,7 @@ select{width:100%;margin-top:8px;padding:13px;border:0;border-radius:8px;backgro
 <main class="page"><div class="panel">
 <section class="hero-banner"><h1>Welcome to <u>Tomato Crop Doctor</u></h1></section>
 
-<p class="lead-box">Diagnose <strong class="accent">tomato crop diseases</strong> instantly with smart AI — upload a photo of a leaf, fruit, stem, flower or roots and let technology guide your next step.</p>
+<p class="lead-box">Diagnose <strong class="accent">tomato crop diseases</strong> instantly with smart AI — upload a photo of a leaf, fruit and let technology guide your next step.</p>
 <!-- <p class="powered">Powered by <b>Deep Learning (Keras)</b> trained on the <b>PlantVillage</b> dataset</p> -->
 
 {% if error %}<p class="warn">{{ error }}</p>{% endif %}
@@ -166,14 +166,14 @@ select{width:100%;margin-top:8px;padding:13px;border:0;border-radius:8px;backgro
   </label>
   <p class="file-name" id="fileName"></p>
   <label class="part-pick">Plant part
-    <select name="part"><option value="auto" selected>Auto-detect (recommended)</option><option value="leaf">Leaf</option><option value="fruit">Fruit</option><option value="stem">Stem</option><option value="flower">Flower</option><option value="root">Roots</option></select>
+    <select name="part"><option value="auto" selected>Auto-detect (recommended)</option><option value="leaf">Leaf</option><option value="fruit">Fruit</option></select>
   </label>
   <button type="submit" class="btn" id="analyzeBtn">Analyze Image</button>
 </form>
 
 <section class="gallery-section">
   <h2>Parts we check</h2>
-  <div class="part-chips"><span>🍃 Leaf</span><span>🍅 Fruit</span><span>🌿 Stem</span><span>🌼 Flower</span><span>🌱 Roots</span></div>
+  <div class="part-chips"><span>🍃 Leaf</span><span>🍅 Fruit</span></div>
   <h2>Leaf diseases we can detect</h2>
   <div class="gallery">
     {% set classes = ['Bacterial Spot','Early Blight','Late Blight','Leaf Mold','Septoria Leaf Spot','Spider Mites','Target Spot','Yellow Leaf Curl Virus','Mosaic Virus','Healthy'] %}
