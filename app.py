@@ -81,10 +81,26 @@ def predict():
         label = PART_LABELS.get(res["part"], res["part"])
         return home_error(f"Detected part: {label}. The disease model for this part is not installed yet. See the README to train and add it.", 200)
 
+    # ==========================================
+    # TWO-TIERED CONFIDENCE THRESHOLD HEURISTIC
+    # ==========================================
+    confidence = res.get("confidence", 0)
+
+    # Tier 1: Reject Out-of-Distribution / Junk Data (< 66%)
+    if confidence < 83.2:
+        os.remove(path)
+        return home_error("Image unrecognized or confidence too low (< 83.2%). Please retry with a clear tomato leaf or fruit photo.")
+
+    # Tier 2: Low-confidence warning flag (66% - 75%)
+    elif 83.2 <= confidence < 75.0:
+        warning_msg = "Warning: Image clarity is low or symptoms are ambiguous. Please verify diagnosis."
+        existing_notice = res.get("notice") or ""
+        res["notice"] = f"{existing_notice} {warning_msg}".strip()
+    # ==========================================
+
     rid = database.add_record(name, file.filename, res["disease_key"], res["confidence"],
                               res["part"], res["part_confidence"], res["notice"])
     return redirect(url_for("result", rid=rid))
-
 
 @app.route("/result/<int:rid>")
 def result(rid):
